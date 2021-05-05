@@ -1,0 +1,14 @@
+.wrapper {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.zoom-div {
+    flex: 1
+}
+
+.main-div {
+    flex: 1;
+}
