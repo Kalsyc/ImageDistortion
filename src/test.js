@@ -58,7 +58,7 @@ function initialize() {
 
 function onPointerMove(eventData) {
   ring.visible = true;
-  displace.position.set(eventData.data.global.x - 25, eventData.data.global.y);
+  displace.position.set(eventData.data.global.x, eventData.data.global.y);
   ring.position.copyFrom(displace.position);
 }
 
