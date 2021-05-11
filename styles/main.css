@@ -12,3 +12,8 @@
 .main-div {
     flex: 1;
 }
+
+.filter {
+    width: 100%;
+    filter: url(#noise);
+}
