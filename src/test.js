@@ -55,11 +55,19 @@ function initialize() {
   ]).load(() => {
     const bg = new PIXI.Sprite(app.loader.resources.bg.texture);
     bg2 = new PIXI.Sprite(app.loader.resources.bg.texture);
+    container.width = app.screen.width/2;
+    container.height = app.screen.height/2;
+    container2.width = app.screen.width/2;
+    container2.height = app.screen.height/2;
     bg.width = app.screen.width/2;
     bg.height = app.screen.height/2;
     bg2.width = app.screen.width/2;
     bg2.height = app.screen.height/2;
     container.addChild(bg);
+    container2.mask = new PIXI.Graphics()
+ .beginFill(0xffffff)
+ .drawRect(0, bg2.height, bg2.width, bg2.height)
+ .endFill();
     
     //viewport.addChild(bg2);
     //viewport.position.y = bg.height;
@@ -73,6 +81,7 @@ function initialize() {
 
     displace = new PIXI.Sprite(app.loader.resources.filter.texture)
     displace2 = new PIXI.Sprite(app.loader.resources.filter.texture)
+    displace2.scale.set(2);
     const displacementFilter = new PIXI.filters.DisplacementFilter(displace);
     const displacementFilter2 = new PIXI.filters.DisplacementFilter(displace2);
     container.addChild(displace);
@@ -81,7 +90,10 @@ function initialize() {
     container2.filters = [displacementFilter2];
     displacementFilter.scale.x = 110;
     displacementFilter.scale.y = 110;
+    displacementFilter2.scale.x = 110;
+    displacementFilter2.scale.y = 110;
     displace.anchor.set(0.5);
+    displace2.anchor.set(0.5);
     viewport.drag().pinch();
 
     app.stage
@@ -97,12 +109,15 @@ function onPointerMove(eventData) {
   var offset = document.documentElement.clientHeight / 2;
   var radius = 170;
   var zoom = offset / radius /  1.3  * 0.9;
-  displace2.position.set(eventData.data.global.x, eventData.data.global.y);
-  var mat = new PIXI.Matrix();
-  mat.scale(2,2);
-  mat.translate(0.5, 0.5);
-  bg2.scale = new PIXI.Point(2,2);
-  bg2.position.copyFrom(displace2.position);
+  //displace2.position.set(500, 500);
+  //displace2.position.set(-eventData.data.global.x, -eventData.data.global.y)
+  //container2.position.set(50,50);
+  //bg2.position.set(100,100);
+  container2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 90);
+  bg2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 90);
+  bg2.scale.set(0.5);
+  //bg2.scale = new PIXI.Point(1.2,1.2);
+  //bg2.position.copyFrom(displace2.position);
 
   //viewport.drag();
   //viewport.fit(false, 200, 200);
