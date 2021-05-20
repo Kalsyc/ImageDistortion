@@ -4,9 +4,9 @@ var badMainImg = new Image();
 var displacementImg = new Image();
 var displaceContext;
 var displaceData;
-mainImg.src = "./images/img_midground_good.png";
-badMainImg.src = "./images/img_midground_bad.jpg";
-displacementImg.src = "./images/displace.png";
+mainImg.src = "https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/img_midground_good.png";
+badMainImg.src = "https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/img_midground_bad.jpg";
+displacementImg.src = "https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/displace.png";
 
 //Global Variables
 var touchInput;

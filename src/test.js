@@ -39,18 +39,18 @@ function initialize() {
 
   app.loader.add([{
     name: 'bg',
-    url: 'images/img_midground_good.png',
-    crossOrigin: ''
+    //url: 'https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/img_midground_good.png'
+    url: './images/img_midground_good.png'
   },
   {
     name: 'ring',
-    url: 'images/ring.png',
-    crossOrigin: ''
+    //url: 'https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/ring.png',
+    url: './images/ring.png'
   },
   {
     name: 'filter',
-    url: 'images/displace.png',
-    crossOrigin: ''
+    //url: 'https://test-video-bucket-darren.s3-ap-southeast-1.amazonaws.com/displace.png',
+    url: './images/displace.png'
   }
   ]).load(() => {
     const bg = new PIXI.Sprite(app.loader.resources.bg.texture);
@@ -81,7 +81,7 @@ function initialize() {
 
     displace = new PIXI.Sprite(app.loader.resources.filter.texture)
     displace2 = new PIXI.Sprite(app.loader.resources.filter.texture)
-    displace2.scale.set(2);
+    displace2.scale.set(3);
     const displacementFilter = new PIXI.filters.DisplacementFilter(displace);
     const displacementFilter2 = new PIXI.filters.DisplacementFilter(displace2);
     container.addChild(displace);
@@ -93,7 +93,7 @@ function initialize() {
     displacementFilter2.scale.x = 110;
     displacementFilter2.scale.y = 110;
     displace.anchor.set(0.5);
-    displace2.anchor.set(0.5);
+    //displace2.anchor.set(0.5);
     viewport.drag().pinch();
 
     app.stage
@@ -109,13 +109,17 @@ function onPointerMove(eventData) {
   var offset = document.documentElement.clientHeight / 2;
   var radius = 170;
   var zoom = offset / radius /  1.3  * 0.9;
-  //displace2.position.set(500, 500);
-  //displace2.position.set(-eventData.data.global.x, -eventData.data.global.y)
+  //displace2.pivot.set(eventData.data.global.x, eventData.data.global.y);
+  //displace2.position.set(eventData.data.global.x, eventData.data.global.y);
+  
   //container2.position.set(50,50);
   //bg2.position.set(100,100);
-  container2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 90);
-  bg2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 90);
+  container2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 50);
+  bg2.position.set(-eventData.data.global.x * 2, -eventData.data.global.y * 2 + 50);
   bg2.scale.set(0.5);
+  displace2.position.set(eventData.data.global.x + 200, eventData.data.global.y + 300)
+  //console.log(eventData.data.global.x, eventData.data.global.y);
+  //displace2.position.set(400, 500);
   //bg2.scale = new PIXI.Point(1.2,1.2);
   //bg2.position.copyFrom(displace2.position);
 
